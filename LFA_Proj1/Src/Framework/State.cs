@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LFA_Proj1.src
+namespace LFA_Proj1.Src.Framework
 {
     class State
     {
@@ -14,7 +14,7 @@ namespace LFA_Proj1.src
         }
 
         public readonly int id;
-        public Dictionary<string, int> map = new Dictionary<string, int>(); // key = terminal, int = state id.
+        public NeighborhoodMap neighborhood = new NeighborhoodMap();
         private bool initialState = false;
         private bool finalState = false;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LFA_Proj1.src
+namespace LFA_Proj1.Src.Framework
 {
     class Automaton
     {
