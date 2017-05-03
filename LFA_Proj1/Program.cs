@@ -1,12 +1,20 @@
 ﻿using System;
+using Proj1LFA.Src.Framework;
 
-namespace LFA_Proj1
+namespace ConsoleApplication
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            try
+            {
+                var automaton = Automaton.FromFilePath("");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

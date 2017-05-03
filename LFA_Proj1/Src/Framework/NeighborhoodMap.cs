@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LFA_Proj1.Src.Framework
+namespace Proj1LFA.Src.Framework
 {
     using Terminal = String;
     using StateId = Int32;
