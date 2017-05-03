@@ -18,7 +18,7 @@ namespace Proj1LFA.Src.Framework.Grammar
                 throw new Exception($"Invalid line found.\r\n 0 or More than" +
                 $" 1 token \"{Defines.BREAKRULES}\" in the same line");
 
-            rule.alias = rule_production.First();
+            rule.alias = rule_production.First().Replace("<", "").Replace(">", "").Trim();
             rule.productions = Production.MountProductions(rule_production.Last()).ToList();
             return rule;
         }

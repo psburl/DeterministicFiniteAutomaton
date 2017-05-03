@@ -20,8 +20,8 @@ namespace Proj1LFA.Src.Framework.Grammar
             var production = new Production();
             production.terminal = term_nonTerm.FirstOrDefault() ?? "";
             if(term_nonTerm.Count() > 1)
-                 production.terminal = term_nonTerm.Last().Replace(">","");
-            return new Production();
+                 production.nonTerminal = term_nonTerm.Last().Replace(">","").Trim();
+            return production;
         }
     }
 }

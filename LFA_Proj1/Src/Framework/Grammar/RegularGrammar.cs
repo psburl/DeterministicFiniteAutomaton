@@ -19,10 +19,12 @@ namespace Proj1LFA.Src.Framework.Grammar
 
         private static string GetFile(string path)
         {
-            if(File.Exists(path) == false)
+            return "<S> ::= a<A> | e<A> | i<A> | o<A> | u<A> \r\n < A > ::= a<A> | e<A> | i<A> | o<A> | u<A> |";
+
+            if (File.Exists(path) == false)
                 throw new Exception($"Input file does not exists. Path: {path}\r\n");
-            
-            return File.ReadAllText(path);
+
+             return File.ReadAllText(path);
         }
     }
 }
