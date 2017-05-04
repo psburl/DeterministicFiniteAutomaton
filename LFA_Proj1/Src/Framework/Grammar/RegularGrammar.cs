@@ -11,14 +11,28 @@ namespace Proj1LFA.Src.Framework.Grammar
 
         public static RegularGrammar FromPath(string inputPath)
         {
-            var input = new RegularGrammar();
             var file = GetFile(inputPath);
-            var lines = file.SplitBy(Defines.BREAKLINES);
-            lines.ForEach(l => input.rules.Add(Rule.Serialize(l)));
-            var initialRule = input.rules.FirstOrDefault(r => r.alias == Defines.INITIALSTATEALIAS);
+
+            return Validate(new RegularGrammar()
+            {
+                rules = SerializeRules(file).ToList()
+            });
+        }
+
+        private static RegularGrammar Validate(RegularGrammar grammar)
+        {
+            var rules = grammar.rules;
+            var initialRule = rules.FirstOrDefault(r => r.alias == Defines.INITIALSTATEALIAS);
             if(initialRule == null)
                 throw new Exception("The input grammar does not contains an initial Rule <S>\r\n");
-            return input;
+            return grammar;
+        }
+
+        private static IEnumerable<Rule> SerializeRules(string file)
+        {
+            var lines = file.SplitBy(Defines.BREAKLINES);
+            foreach(var line in lines)
+                yield return Rule.Serialize(line);
         }
 
         private static string GetFile(string path)

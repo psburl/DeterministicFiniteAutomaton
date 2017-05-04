@@ -9,11 +9,15 @@ namespace Proj1LFA.Src.Framework.Automaton
     {
         public readonly List<State> states = new List<State>();
 
-        public static FiniteAutomaton Serialize(RegularGrammar grammar)
+        public FiniteAutomaton(RegularGrammar grammar)
         {
-            var automaton = new FiniteAutomaton();
-            grammar.rules.ForEach(r => automaton.states.Add(new State(r)));           
-            return automaton;
+            this.states = SerializeStates(grammar).ToList();
+        }
+
+        public static IEnumerable<State> SerializeStates(RegularGrammar grammar)
+        {
+            foreach(var rule in grammar.rules)
+                yield return new State(rule);
         }    
 
         public State GetInitialState()
