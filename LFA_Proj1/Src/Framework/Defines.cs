@@ -11,5 +11,8 @@ namespace Proj1LFA.Src.Framework
          public const string BREAKPRODUCTIONS = "|";
 
          public const string BREAKSINGLEPRODUCTION = "<";
+
+
+         public const string INITIALSTATEALIAS = "S";
     }
 }

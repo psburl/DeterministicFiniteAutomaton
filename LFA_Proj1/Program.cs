@@ -1,5 +1,6 @@
 ﻿using System;
 using Proj1LFA.Src.Framework.Automaton;
+using Proj1LFA.Src.Framework.Grammar;
 
 namespace ConsoleApplication
 {
@@ -9,7 +10,9 @@ namespace ConsoleApplication
         {
             try
             {
-                var automaton = FiniteAutomaton.FromFilePath("");
+                var grammar = RegularGrammar.FromPath(""); 
+                var automaton = FiniteAutomaton.Serialize(grammar);
+                automaton.Print();
             }
             catch(Exception e)
             {

@@ -1,7 +1,7 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\psburl\\.nuget\\packages"
+      "/home/psburl/.nuget/packages"
     ]
   }
 }

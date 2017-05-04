@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Proj1LFA.Src.Framework.Grammar;
 
 namespace Proj1LFA.Src.Framework.Automaton
 {
     using Terminal = String;
-    using StateId = Int32;
-    using StatesId = List<Int32>;
+    using StateId = String;
+    using StatesId = List<String>;
 
     class NeighborhoodMap : Dictionary<Terminal, StatesId>
     {
@@ -19,20 +20,22 @@ namespace Proj1LFA.Src.Framework.Automaton
             return this[terminal];
         }
 
-        public void AddNeighbor(Terminal terminal, StatesId statesId)
+        public void AddNeighbor(Production production)
         {
-            if (HasTerminal(terminal))
-                this[terminal].AddRange(statesId);
+            if (HasTerminal(production.terminal))
+                this[production.terminal].Add(production.nonTerminal);
             else
-                this[terminal] = statesId;
+                this[production.terminal] = new StatesId() {production.nonTerminal};
         }
 
-        public void AddNeighbor(Terminal terminal, StateId stateId)
+        public void Print()
         {
-            if (HasTerminal(terminal))
-                this[terminal].Add(stateId);
-            else
-                this[terminal] = new StatesId() { stateId };
+             foreach(var pair in this)
+             {
+                Console.Write(pair.Key);
+                Console.Write("->");
+                Console.WriteLine(string.Join(", ", pair.Value));
+             }
         }
     }
 }
