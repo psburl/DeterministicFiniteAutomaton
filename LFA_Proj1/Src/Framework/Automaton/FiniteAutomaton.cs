@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Proj1LFA.Src.Framework.Grammar;
+using Proj1LFA.Src.Framework.Determinization;
 
 namespace Proj1LFA.Src.Framework.Automaton
 {
@@ -20,17 +21,22 @@ namespace Proj1LFA.Src.Framework.Automaton
                 yield return new State(rule);
         }    
 
+        public State GetStateWithId(string id)
+        {
+            return states.FirstOrDefault(s => s.id == id);
+        }
+
         public State GetInitialState()
         {
-            return states.FirstOrDefault(s => s.IsInitialState);
+            return states.FirstOrDefault(s => s.isInitialState);
         }
 
         public void Print()
         {
             foreach(var state in this.states)
             {
-                Console.WriteLine(state.Id);
-                state.neighborhood.Print();
+                Console.WriteLine(state.id);
+                state.neighbors.Print();
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Proj1LFA.Src.Framework.Grammar;
+using System.Linq;
 
 namespace Proj1LFA.Src.Framework.Automaton
 {
@@ -15,7 +16,7 @@ namespace Proj1LFA.Src.Framework.Automaton
             return ContainsKey(terminal);
         }
 
-        public StatesId GetTerminalStates(Terminal terminal)
+        public StatesId GetStatesByTerminal(Terminal terminal)
         {
             return this[terminal];
         }
@@ -31,6 +32,14 @@ namespace Proj1LFA.Src.Framework.Automaton
                 this[production.terminal].Add(production.nonTerminal);
             else
                 this[production.terminal] = new StatesId() {production.nonTerminal};
+        }
+
+        public void AddNeighbor(string terminal, IEnumerable<string> nonTerminal)
+        {
+            if (HasTerminal(terminal))
+                this[terminal].AddRange(nonTerminal);
+            else
+                this[terminal] = nonTerminal.ToList();
         }
 
         public void Print()

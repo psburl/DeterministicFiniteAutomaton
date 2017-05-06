@@ -25,6 +25,7 @@ namespace Proj1LFA.Src.Framework.Grammar
         {
             var pair = text.SplitBy(Defines.BREAKSINGLEPRODUCTION).ToList();
             pair.Add(""); // guarantees that had more than 2 elements
+            SingletonAlphabet.Instance.AddToken(pair[0].Trim());
             return new Production()
             {
                 terminal =  pair[0].Trim(),

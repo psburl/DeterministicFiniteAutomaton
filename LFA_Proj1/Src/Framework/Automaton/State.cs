@@ -8,26 +8,32 @@ namespace Proj1LFA.Src.Framework.Automaton
 {
     class State
     {
-        public readonly string Id;
-        public readonly bool IsInitialState = false;
-        public readonly bool IsFinalState = false;
-        public NeighborhoodMap neighborhood = new NeighborhoodMap();
+        public string id;
+        public bool isInitialState = false;
+        public bool isFinalState = false;
+        public NeighborhoodMap neighbors = new NeighborhoodMap();
 
         public State(Rule rule)
         {
-            this.Id = rule.alias;
-            this.IsInitialState = rule.IsInitialState();
-            this.IsFinalState = rule.IsFinalState();
-            rule.productions.ForEach(p => this.neighborhood.AddNeighbor(p));
+            this.id = rule.alias;
+            this.isInitialState = rule.IsInitialState();
+            this.isFinalState = rule.IsFinalState();
+            rule.productions.ForEach(p => this.neighbors.AddNeighbor(p));
         }        
 
-        public IEnumerable<string> GetTerminalsWithIndeterminism()
+        public State(string id, bool isInitial)
         {
-            return neighborhood.
+            this.id = id;
+            this.isInitialState = isInitial;
+        }
+
+        public IEnumerable<string> GetIndeterministicIds()
+        {
+            return neighbors.
                 Keys.
                 Where(
                     k => 
-                    neighborhood.GetTerminalStates(k).Count() > 1
+                    neighbors.GetStatesByTerminal(k).Count() > 1
                 );
         }
     }

@@ -15,6 +15,9 @@ namespace ConsoleApplication
               
                 automaton.Determine();
                 automaton.Print();
+                foreach (var token in SingletonAlphabet.Instance.Tokens)
+                    Console.Write(token.Value);
+                Console.ReadLine();
             }
             catch(Exception e)
             {
