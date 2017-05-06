@@ -7,7 +7,7 @@ namespace Proj1LFA.Src.Framework.Automaton
 {
     class FiniteAutomaton
     {
-        public readonly List<State> states = new List<State>();
+        public List<State> states = new List<State>();
 
         public FiniteAutomaton(RegularGrammar grammar)
         {
@@ -32,6 +32,12 @@ namespace Proj1LFA.Src.Framework.Automaton
                 Console.WriteLine(state.Id);
                 state.neighborhood.Print();
             }
+        }
+
+        public void Determine()
+        {
+            var determinizer = new Determinizer(this);
+            determinizer.Determine();
         }
     }
 }

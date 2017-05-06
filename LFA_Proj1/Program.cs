@@ -12,6 +12,8 @@ namespace ConsoleApplication
             {
                 var grammar = RegularGrammar.FromPath(""); 
                 var automaton = new FiniteAutomaton(grammar);
+              
+                automaton.Determine();
                 automaton.Print();
             }
             catch(Exception e)

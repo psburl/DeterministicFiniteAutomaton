@@ -20,6 +20,11 @@ namespace Proj1LFA.Src.Framework.Automaton
             return this[terminal];
         }
 
+        public void OverwriteNeighbor(string terminal, string nonTerminal)
+        {
+            this[terminal] = new StatesId() {nonTerminal};
+        }
+
         public void AddNeighbor(Production production)
         {
             if (HasTerminal(production.terminal))
